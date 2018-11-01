@@ -12,6 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // 获取 Faker 实例
         $faker = app(Faker\Generator::class);
 
         // 头像假数据
@@ -23,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200',
             'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png?imageView2/1/w/200/h/200',
         ];
+
         // 生成数据集合
         $users = factory(User::class)
             ->times(10)
@@ -42,9 +44,10 @@ class UsersTableSeeder extends Seeder
 
         // 单独处理第一个用户的数据
         $user = User::find(1);
-        $user->name = 'Summer';
-        $user->email = 'summer@yousails.com';
-        $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
+        $user->name = 'lining';
+        $user->email = 'lining4885@163.com';
+        $user->avatar = 'http://larabbs.test/uploads/images/avatar/201811/01/1_1541060188_VZdWNTJlr0.jpeg';
         $user->save();
+
     }
 }
