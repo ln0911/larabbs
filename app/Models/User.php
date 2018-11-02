@@ -27,10 +27,22 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
+    /**
+     * user topics
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function topics()
     {
         return $this->hasMany(Topic::class);
+    }
+
+    /**
+     * user's reply of topic
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 
 

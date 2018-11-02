@@ -8,14 +8,31 @@ class Topic extends Model
         'title', 'body', 'category_id',  'excerpt', 'slug',
     ];
 
+    /**
+     * Topic Of Category
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Topic Of Author
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Topic Of Reply
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 
 
