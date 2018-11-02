@@ -24,6 +24,14 @@ class ReplyObserver
 
         //通知
         $topic->user->notify(new TopicReplied($reply));
+    }
 
+    /**
+     * reply_count reduce
+     * @param Reply $reply
+     */
+    public function deleted(Reply $reply)
+    {
+        $reply->topic->decrement('reply_count',1);
     }
 }
