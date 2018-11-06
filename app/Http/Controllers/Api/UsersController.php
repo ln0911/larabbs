@@ -45,6 +45,11 @@ class UsersController extends Controller
         ])->setStatusCode(201);
     }
 
+    /**
+     * update User info
+     * @param UserRequest $request
+     * @return \Dingo\Api\Http\Response
+     */
     public function update(UserRequest $request)
     {
         $user = $this->user();
@@ -63,6 +68,10 @@ class UsersController extends Controller
 
     }
 
+    /**
+     * get user info
+     * @return \Dingo\Api\Http\Response
+     */
     public function me()
     {
         return $this->response->item($this->user(),new UserTransformer());
