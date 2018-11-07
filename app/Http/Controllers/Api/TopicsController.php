@@ -23,4 +23,20 @@ class TopicsController extends Controller
 
         return $this->response->item($topic,new TopicTrandsformer())->setStatusCode(201);
     }
+
+    /**
+     * update
+     * @param TopicRequest $request
+     * @param Topic $topic
+     * @return \Dingo\Api\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(TopicRequest $request,Topic $topic)
+    {
+        $this->authorize('update', $topic);
+
+        $topic->update($request->all());
+
+        return $this->response->item($topic,new TopicTrandsformer());
+    }
 }

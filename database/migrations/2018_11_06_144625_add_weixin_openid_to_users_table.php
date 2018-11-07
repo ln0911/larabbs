@@ -17,6 +17,7 @@ class AddWeixinOpenidToUsersTable extends Migration
             $table->string('weixin_openid')->unique()->nullable()->after('password');
             $table->string('weixin_unionid')->unique()->nullable()->after('weixin_openid');
             $table->string('password')->nullable()->change();
+//            $table->string('email')->nullable()->change();
 
         });
     }
@@ -32,6 +33,7 @@ class AddWeixinOpenidToUsersTable extends Migration
             $table->dropColumn('weixin_openid');
             $table->dropColumn('weixin_unionid');
             $table->string('password')->nullable(false)->change();
+//            $table->string('email')->nullable(false)->change();
 
         });
     }
