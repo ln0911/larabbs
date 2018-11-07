@@ -5,12 +5,13 @@
  * Date: 2018/11/7
  * Time: 1:44 PM
  */
-namespace  App\Model\Traits;
+namespace  App\Models\Traits;
 
 use App\Models\Reply;
 use App\Models\Topic;
 use Cache;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 trait ActiveUserHelper
 {
@@ -97,7 +98,7 @@ trait ActiveUserHelper
     {
         // 从回复数据表里取出限定时间范围（$pass_days）内，有发表过回复的用户
         // 并且同时取出用户此段时间内发布回复的数量
-        $reply_users = Reply::select(DB::raw('user_id,count(*) as reply_count'))->where('create_at','>',Carbon::now()->subDays($this->pass_days))
+        $reply_users = Reply::select(DB::raw('user_id,count(*) as reply_count'))->where('created_at','>',Carbon::now()->subDays($this->pass_days))
             ->groupBy('user_id')->get();
         foreach ($reply_users as $value){
             $reply_score = $value->reply_count * $this->reply_weight;
