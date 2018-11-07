@@ -18,5 +18,9 @@ class Policy
 	    // if ($user->isSuperAdmin()) {
 	    // 		return true;
 	    // }
+        // 如果拥有管理内容的权限的话，授权通过
+        if($user->can('manage_contents')){
+            return true;
+        }
 	}
 }
