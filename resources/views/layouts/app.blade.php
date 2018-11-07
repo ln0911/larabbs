@@ -17,8 +17,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Larabbs') - 个人博客</title>
-    <meta name="description" content="@yield('description', 'Larabbs 爱好者社区')" />
+    <title>@yield('title', 'Larabbs') - {{ setting('site_name','laravel 个人博客') }}</title>
+    <meta name="description" content="@yield('description', setting('seo_description' ,'laravel 爱好者社区'))" />
+    <meta name="keyword" content="@yield('keyword', setting('seo_keyword' ,'laravel,bbs 爱好者社区'))" />
 
 
     <!-- Styles -->
