@@ -12,11 +12,6 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1',['middleware'=>'serializer:array','namespace'=>'App\Http\Controllers\Api'],function ($api){
@@ -36,21 +31,19 @@ $api->version('v1',['middleware'=>'serializer:array','namespace'=>'App\Http\Cont
         $api->post('users','UsersController@store')->name('api.users.store');
 
         // 第三方登录
-        $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
-            ->name('api.socials.authorizations.store');
+        $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')->name('api.socials.authorizations.store');
+
         // 登录
-        $api->post('authorizations', 'AuthorizationsController@store')
-            ->name('api.authorizations.store');
+        $api->post('authorizations', 'AuthorizationsController@store')->name('api.authorizations.store');
 
         // 刷新token
-        $api->put('authorizations/current', 'AuthorizationsController@update')
-            ->name('api.authorizations.update');
+        $api->put('authorizations/current', 'AuthorizationsController@update')->name('api.authorizations.update');
+
         // 删除token
-        $api->delete('authorizations/current', 'AuthorizationsController@destroy')
-            ->name('api.authorizations.destroy');
+        $api->delete('authorizations/current', 'AuthorizationsController@destroy')->name('api.authorizations.destroy');
+
         // 分类
         $api->get('categories','CategoriesController@index')->name('api.categories.index');
-
 
         //需要token验证
         $api->group(['middleware'=> 'api.auth'],function ($api){
@@ -61,6 +54,9 @@ $api->version('v1',['middleware'=>'serializer:array','namespace'=>'App\Http\Cont
 
             //上传图片
             $api->post('images','ImagesController@store')->name('api.images.store');
+
+            //发布话题
+            $api->post('topics','TopicsController@store')->name('api.topics.store');
         });
     });
 });
